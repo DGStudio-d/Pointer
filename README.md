@@ -54,12 +54,32 @@ CASSANDRA_KEYSPACE=pointer_keyspace
 
 ## API Endpoints
 
+### General
 - `GET /` - Root endpoint
 - `GET /health` - Health check
 - `GET /docs` - Swagger documentation
+
+### Users
 - `POST /api/v1/users/` - Create user
 - `GET /api/v1/users/` - List users
 - `GET /api/v1/users/{user_id}` - Get user by ID
+
+### Products
+- `POST /api/v1/products/` - Create product
+- `GET /api/v1/products/` - List products
+- `GET /api/v1/products/{product_id}` - Get product
+- `PUT /api/v1/products/{product_id}` - Update product
+- `DELETE /api/v1/products/{product_id}` - Delete product
+
+### Categories
+- `POST /api/v1/categories/` - Create category
+- `GET /api/v1/categories/` - List categories
+- `GET /api/v1/categories/{category_id}` - Get category
+
+### Orders
+- `POST /api/v1/orders/` - Create order
+- `GET /api/v1/orders/` - List orders
+- `GET /api/v1/orders/{order_id}` - Get order
 
 ## Project Structure
 

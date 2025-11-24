@@ -1,6 +1,7 @@
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 from app.core.config import settings
+from app.models.cassandra_models import CASSANDRA_TABLES
 
 cluster = None
 session = None
@@ -25,15 +26,13 @@ def init_cassandra_db():
     
     session.set_keyspace(settings.CASSANDRA_KEYSPACE)
     
-    # Create example table
-    session.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id UUID PRIMARY KEY,
-            username TEXT,
-            email TEXT,
-            created_at TIMESTAMP
-        )
-    """)
+    # Create all tables
+    for table_name, create_statement in CASSANDRA_TABLES.items():
+        try:
+            session.execute(create_statement)
+            print(f"Created/verified table: {table_name}")
+        except Exception as e:
+            print(f"Error creating table {table_name}: {e}")
     
     print("Cassandra Database initialized")
 
